@@ -5,5 +5,4 @@ modules/VoiceAssistent/__pycache__
 modules/VoiceAssistent/voice.mp3
 modules/VoiceAssistent/errors/__pycache__
 test.py
-
-
+env

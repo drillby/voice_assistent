@@ -9,6 +9,12 @@ import datetime
 import json
 import platform
 import errors.custome_errors
+from Spotify import Track, Playlist, Album, Artist
+
+track = Track.Track()
+playlist = Playlist.Playlist()
+album = Album.Album()
+artist = Artist.Artist()
 
 
 class VoiceAssistent:
@@ -87,9 +93,12 @@ class VoiceAssistent:
             List: List of PIDs(ints) related to the application
         """
         if self.os == "linux":
-            return subprocess.Popen(
-                f"pidof {app}", shell=True, stdout=subprocess.PIPE).communicate()[0].decode(
-                    "utf-8").split(" ")
+            return (
+                subprocess.Popen(f"pidof {app}", shell=True, stdout=subprocess.PIPE)
+                .communicate()[0]
+                .decode("utf-8")
+                .split(" ")
+            )
 
     def get_opened_apps(self) -> str:
         """Will return a ByteString of the opened apps
@@ -98,11 +107,17 @@ class VoiceAssistent:
             str: Opened apps
         """
         if self.os == "linux":
-            return subprocess.Popen(
-                "xlsclients", stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+            return (
+                subprocess.Popen("xlsclients", stdout=subprocess.PIPE)
+                .communicate()[0]
+                .decode("utf-8")
+            )
         if self.os == "windows":
-            return subprocess.Popen(
-                "tasklist", stdout=subprocess.PIPE).communicate()[0].decode("utf-8")
+            return (
+                subprocess.Popen("tasklist", stdout=subprocess.PIPE)
+                .communicate()[0]
+                .decode("utf-8")
+            )
 
     def open_code(self, path: str) -> None:
         """Will open VSCode in the given path
@@ -112,18 +127,20 @@ class VoiceAssistent:
         """
         if self.os == "linux":
             subprocess.Popen(
-                "code .", stdout=subprocess.PIPE, shell=True, cwd=path).communicate()[0]
+                "code .", stdout=subprocess.PIPE, shell=True, cwd=path
+            ).communicate()[0]
         elif self.os == "windows":
             pass
 
         return
 
     def close_code(self) -> None:
-        """Will close VSCode
-        """
+        """Will close VSCode"""
         if self.os == "linux":
             subprocess.Popen(
-                f"kill {int(self.get_pid_of_app('code')[-1])}", stdout=subprocess.PIPE, shell=True
+                f"kill {int(self.get_pid_of_app('code')[-1])}",
+                stdout=subprocess.PIPE,
+                shell=True,
             ).communicate()[0]
         elif self.os == "windows":
             pass
@@ -131,19 +148,20 @@ class VoiceAssistent:
         return
 
     def open_chrome(self):
-        """Will open Google Chrome
-        """
+        """Will open Google Chrome"""
         subprocess.Popen(
-            "google-chrome", stdout=subprocess.PIPE, shell=True).communicate()[0]
+            "google-chrome", stdout=subprocess.PIPE, shell=True
+        ).communicate()[0]
 
         return
 
     def close_chrome(self):
-        """Will close Google Chrome
-        """
+        """Will close Google Chrome"""
         if self.os == "linux":
             subprocess.Popen(
-                f"kill {int(self.get_pid_of_app('chrome')[-1])}", stdout=subprocess.PIPE, shell=True
+                f"kill {int(self.get_pid_of_app('chrome')[-1])}",
+                stdout=subprocess.PIPE,
+                shell=True,
             ).communicate()[0]
 
         elif self.os == "windows":
@@ -159,11 +177,12 @@ class VoiceAssistent:
         """
         url = "https://www.google.com/search?q="
         search = search.replace(" ", "+")
-        url = url+search
+        url = url + search
 
         if self.os == "linux":
             subprocess.Popen(
-                f"google-chrome {url}", stdout=subprocess.PIPE, shell=True).communicate()[0]
+                f"google-chrome {url}", stdout=subprocess.PIPE, shell=True
+            ).communicate()[0]
 
         elif self.os == "windows":
             pass
@@ -180,30 +199,39 @@ class VoiceAssistent:
         pass
 
     def open_spotify(self):
-        """Will open Spotify
-        """
+        """Will open Spotify"""
         if self.os == "linux":
             subprocess.Popen(
-                "spotify", stdout=subprocess.PIPE, shell=True).communicate()[0]
+                "spotify", stdout=subprocess.PIPE, shell=True
+            ).communicate()[0]
 
         elif self.os == "windows":
             pass
 
     def close_spotify(self):
-        """Will close Spotify
-        """
+        """Will close Spotify"""
         subprocess.Popen(
-            f"kill {int(self.get_pid_of_app('spotify')[-1])}", stdout=subprocess.PIPE, shell=True
+            f"kill {int(self.get_pid_of_app('spotify')[-1])}",
+            stdout=subprocess.PIPE,
+            shell=True,
         ).communicate()[0]
 
-    def play_song(self):
-        pass
+    def play_song(self, track_name: str) -> None:
+        track.play(track_name, "drillby-Z97-D3H")
 
-    def play_artist(self):
-        pass
+        return
 
-    def play_album(self):
-        pass
+    def play_artist(self, artist_name):
+        artist.play(artist_name, "drillby-Z97-D3H")
 
-    def play_playlist(self):
-        pass
+        return
+
+    def play_album(self, album_name: str):
+        album.play(album_name, "drillby-Z97-D3H")
+
+        return
+
+    def play_playlist(self, playlist_name: str):
+        playlist.play(playlist_name, "drillby-Z97-D3H")
+
+        return
