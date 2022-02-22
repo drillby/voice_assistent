@@ -8,8 +8,8 @@ import subprocess
 import datetime
 import json
 import platform
-import errors.custome_errors
-from Spotify import Track, Playlist, Album, Artist
+from .errors import custome_errors
+from ..Spotify import Track, Playlist, Album, Artist
 
 track = Track.Track()
 playlist = Playlist.Playlist()
@@ -59,7 +59,7 @@ class VoiceAssistent:
                 said = r.recognize_google(audio)
                 return said
             except Exception:
-                return errors.custome_errors.DidNotUnderstand.__str__(self)
+                return custome_errors.DidNotUnderstand.__str__(self)
 
     def speak(self, msg: str) -> None:
         """Will say given message
