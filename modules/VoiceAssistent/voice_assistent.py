@@ -1,15 +1,17 @@
-from typing import List
+import datetime
+import json
 import os
+import platform
+import subprocess
 import time
+from typing import List
+
 import playsound
 import speech_recognition as sr
 from gtts import gTTS
-import subprocess
-import datetime
-import json
-import platform
+
+from ..Spotify import Album, Artist, Playlist, Track
 from .errors import custome_errors
-from ..Spotify import Track, Playlist, Album, Artist
 
 track = Track.Track()
 playlist = Playlist.Playlist()
@@ -27,8 +29,8 @@ class VoiceAssistent:
         with open("speach_key_words.json", "r") as f:
             self.key_words = json.load(f)
 
-        with open("code_projects_location.json", "r") as f:
-            self.code_projects_location = json.load(f)
+        with open("PC_paths.json", "r") as f:
+            self.paths = json.load(f)
 
         self.os = self.get_running_os()
 
@@ -189,8 +191,12 @@ class VoiceAssistent:
 
         return
 
-    def take_note(self):
-        pass
+    def take_note(self, text: str) -> None:
+        note_path = self.paths["linux"]["notes"]
+        date = datetime.datetime.now()
+        file_name = str(date).replace(":", "-").replace(" ", "_")[:19] + "-note.txt"
+        with open(f"{note_path}/{file_name}", "w") as f:
+            f.write(text)
 
     def read_note(self):
         pass
