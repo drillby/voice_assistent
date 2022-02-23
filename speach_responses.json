@@ -1,3 +1,4 @@
 {
-    "test": "test"
+  "confirmation": ["ok", "on it", "roger roger"],
+  "denial": ["I can't do that"]
 }

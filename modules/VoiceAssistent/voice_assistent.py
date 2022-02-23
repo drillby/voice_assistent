@@ -29,7 +29,7 @@ class VoiceAssistent:
         with open("speach_key_words.json", "r") as f:
             self.key_words = json.load(f)
 
-        with open("PC_paths.json", "r") as f:
+        with open("paths.json", "r") as f:
             self.paths = json.load(f)
 
         self.os = self.get_running_os()
