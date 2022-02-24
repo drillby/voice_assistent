@@ -1,9 +1,21 @@
 {
-  "open": ["open", "start"],
+  "open": ["open", "start", "boot"],
   "close": ["close", "kill", "exit"],
+  "kill_bot": ["cancel", "nothing", "quit", "exit"],
   "apps": {
     "code": ["code", "vs code"],
-    "google_chrome": ["google", "chrome", "search"],
+    "google_chrome": ["google", "chrome", "internet"],
     "spotify": ["spotify"]
+  },
+  "code_project": {
+    "smart_bedroom": ["smart bedroom", "smart home", "smart house"],
+    "voice_assistent": ["voice assistent"],
+    "automatization_of_pc": [
+      "automatization",
+      "automatization of pc",
+      "home server",
+      "house server"
+    ],
+    "side_job": ["side job", "high school"]
   }
 }

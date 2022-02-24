@@ -1,9 +1,7 @@
 import datetime
 import json
-import os
 import platform
 import subprocess
-import time
 from typing import List
 
 import playsound
@@ -11,7 +9,6 @@ import speech_recognition as sr
 from gtts import gTTS
 
 from ..Spotify import Album, Artist, Playlist, Track
-from .errors import custome_errors
 
 track = Track.Track()
 playlist = Playlist.Playlist()
@@ -34,23 +31,11 @@ class VoiceAssistent:
 
         self.os = self.get_running_os()
 
-    def listen_for_wake_word(self) -> bool:
-        """Will listen for wake word
-
-        Returns:
-            bool: Wake word registered
-        """
-        text = self.get_audio()
-        if text.count(self.wake_word) > 0:
-            return True
-        else:
-            return False
-
     def get_audio(self) -> str:
-        """Will get audio
+        """Will get audio file
 
         Returns:
-            str: str of audio
+            Union[str, None]: returns said text, if no text is recognized None is returned
         """
         r = sr.Recognizer()
         with sr.Microphone() as source:
@@ -59,9 +44,9 @@ class VoiceAssistent:
 
             try:
                 said = r.recognize_google(audio)
-                return said
+                return str(said).lower()
             except Exception:
-                return custome_errors.DidNotUnderstand.__str__(self)
+                return ""
 
     def speak(self, msg: str) -> None:
         """Will say given message
@@ -69,7 +54,7 @@ class VoiceAssistent:
         Args:
             msg (str): Message to say
         """
-        tts = gTTS(text=msg, lang="en", tld="ie")
+        tts = gTTS(text=msg, lang="en")
         voice_file = "voice.mp3"
         tts.save(voice_file)
         playsound.playsound(voice_file)

@@ -38,6 +38,9 @@ Put them all next to `main.py` folder
      "close": ["close", "key", "words"],
      "apps": {
        "app1": ["app", "key", "words"]
+     },
+     "code_project": {
+       "project_name": ["project", "key", "words"]
      }
    }
    ```
