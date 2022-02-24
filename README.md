@@ -5,6 +5,8 @@ Author: Pavel Podrazký
 Small voice assistent that can make working on PC more convinient.
 <b>Note</b>: This voice assistent is currently not supported on Windows. Windows support will be added in the future.
 
+For text-to-speech I am using gTTS lib and it often has problems figuring out words.
+
 ## Setup
 
 Firs you need to install dependencies.<br>
