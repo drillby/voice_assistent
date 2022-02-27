@@ -1,5 +1,6 @@
 import datetime
 import json
+import os
 import platform
 import subprocess
 from typing import List
@@ -113,9 +114,7 @@ class VoiceAssistent:
             path (str): Path to folder where you want to open VSCode
         """
         if self.os == "linux":
-            subprocess.Popen(
-                "code .", stdout=subprocess.PIPE, shell=True, cwd=path
-            ).communicate()[0]
+            os.popen(f"code {path}")
         elif self.os == "windows":
             pass
 
@@ -136,9 +135,7 @@ class VoiceAssistent:
 
     def open_chrome(self):
         """Will open Google Chrome"""
-        subprocess.Popen(
-            "google-chrome", stdout=subprocess.PIPE, shell=True
-        ).communicate()[0]
+        os.popen("google-chrome")
 
         return
 
@@ -192,9 +189,7 @@ class VoiceAssistent:
     def open_spotify(self):
         """Will open Spotify"""
         if self.os == "linux":
-            subprocess.Popen(
-                "spotify", stdout=subprocess.PIPE, shell=True
-            ).communicate()[0]
+            subprocess.Popen("spotify")
 
         elif self.os == "windows":
             pass
