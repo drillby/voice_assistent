@@ -36,7 +36,7 @@ class VoiceAssistent:
         """Will get audio file
 
         Returns:
-            Union[str, None]: returns said text, if no text is recognized None is returned
+            str: returns said text, if no text is recognized empty str is returned
         """
         r = sr.Recognizer()
         with sr.Microphone() as source:

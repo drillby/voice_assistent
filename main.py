@@ -101,3 +101,11 @@ while True:
                     va.speak(random.choice(va.speach_responses["confirmation"]))
                 except Exception:
                     va.speak(custome_errors.CannotCloseApplication().__str__())
+
+        elif text_arr[0] in va.key_words["search"]:
+            text_arr.pop(0)
+            text = list_to_str(text_arr)
+            try:
+                va.search_on_internet(text)
+            except Exception:
+                va.speak(custome_errors.CannotSearchOnInternet.__str__())

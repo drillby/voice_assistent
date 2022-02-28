@@ -11,3 +11,8 @@ class CannotOpenApplication(Exception):
 class CannotCloseApplication(Exception):
     def __str__(self) -> str:
         return "Couldn't close specified application"
+
+
+class CannotSearchOnInternet(Exception):
+    def __str__(self) -> str:
+        return "Couldn't search given text on Internet"

@@ -2,6 +2,7 @@
   "open": ["open", "start", "boot"],
   "close": ["close", "kill", "exit"],
   "kill_bot": ["cancel", "nothing", "quit", "exit"],
+  "search": ["search", "look up", "find out", "figure out"],
   "apps": {
     "code": ["code", "vs code"],
     "google_chrome": ["google", "chrome", "internet"],
