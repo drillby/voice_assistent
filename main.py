@@ -8,9 +8,9 @@ va = voice_assistent.VoiceAssistent("hello")
 def list_to_str(arr) -> str:
     str = ""
     for word in arr:
-        str += word
+        str += f"{word} "
 
-    return str
+    return str.strip()
 
 
 while True:
