@@ -21,13 +21,13 @@ class VoiceAssistent:
     def __init__(self, wake_word: str):
         self.wake_word = wake_word
 
-        with open("speach_responses.json", "r") as f:
+        with open("json/speach_responses.json", "r") as f:
             self.speach_responses = json.load(f)
 
-        with open("speach_key_words.json", "r") as f:
+        with open("json/speach_key_words.json", "r") as f:
             self.key_words = json.load(f)
 
-        with open("paths.json", "r") as f:
+        with open("json/paths.json", "r") as f:
             self.paths = json.load(f)
 
         self.os = self.get_running_os()

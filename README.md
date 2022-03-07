@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```
 
 Than you need to setup some JSON files, or you can modify existing files.
-Put them all next to `main.py` folder
+Put them all into to `json` folder
 
 1. paths.json
    This path contains paths to notes folder and programming projects folders.
